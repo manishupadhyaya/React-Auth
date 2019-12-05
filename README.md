@@ -13,13 +13,8 @@ Install the dependencies
 ```
 npm install
 ```
-Make sure that MongoDB is running
-```
-mongod
-```
-run the server
-```
-npm run server
+node server.js outside
+and inside client folder npm start
 ```
 and then in a separate window/tab run the frontend
 ```

@@ -1,4 +1,4 @@
-# React Authentication Example
+# React Authentication
 
 This is an example application I created to showcase how to implement authentication on a web application using React and react-router on the frontend and node.js, express, mongodb, and mongoose on the backend.
 
@@ -13,10 +13,9 @@ Install the dependencies
 ```
 npm install
 ```
-node server.js outside
-and inside client folder npm start
+node server.js
 ```
-and then in a separate window/tab run the frontend
+and then in a separate window/tab run the frontend inside client Folder
 ```
 npm start
 ```

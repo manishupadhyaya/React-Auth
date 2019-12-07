@@ -67,18 +67,30 @@ app.post('/api/todos', withAuth, (req, res) => {
 app.post('/api/register', (req, res) => {
   const {
     email,
-    password
+    password,
   } = req.body;
   const user = new User({
     email,
-    password
+    password,
   });
   user.save(function (err) {
     if (err) {
       console.log(err);
       res.status(500).send("Error registering new user please try again.");
     } else {
-      res.status(200).send("Welcome to the club!");
+          console.log(user);
+          const id = user._id;
+          const payload = {
+            email: email,
+            id: id
+          };
+          const token = jwt.sign(payload, secret, {
+            expiresIn: '1h'
+          });
+          var obj = {
+            token
+          }
+          res.status(200).json(obj);
     }
   });
 });

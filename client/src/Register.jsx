@@ -6,12 +6,13 @@ import actions from './actions'
 
 const mapToProps = ({ isAuthenticated }) => ({ isAuthenticated });
 
-class Login extends Component {
+class Register extends Component {
   constructor(props) {
     super(props)
     this.state = {
       email : '',
-      password: ''
+      password: '',
+      password2: ''
     };
   }
   handleInputChange = (event) => {
@@ -23,7 +24,7 @@ class Login extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    fetch('/api/authenticate', {
+    fetch('/api/register', {
       method: 'POST',
       body: JSON.stringify(this.state),
       headers: {
@@ -46,7 +47,7 @@ class Login extends Component {
     })
     .catch(err => {
       console.error(err);
-      alert('Error logging in please try again');
+      alert('Error registering in please try again');
     });
   }
 
@@ -56,7 +57,7 @@ class Login extends Component {
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
     <Grid.Column style={{ maxWidth: 450 }}>
       <Header as='h2' color='teal' textAlign='center'>
-        Log-in to your account
+        Register for an new account
       </Header>
       <Form size='large' onSubmit={this.onSubmit}>
         <Segment stacked>
@@ -77,15 +78,26 @@ class Login extends Component {
             name="password"
             value={this.state.password}
             onChange={this.handleInputChange}
+            required
           />
-
+          <Form.Input
+            fluid
+            icon='lock'
+            iconPosition='left'
+            placeholder='Confirm Password'
+            type='password'
+            name="password2"
+            value={this.state.password2}
+            onChange={this.handleInputChange}
+            required
+          />
           <Button color='teal' fluid size='large'>
-            Login
+            Register
           </Button>
         </Segment>
       </Form>
       <Message>
-        New to us? <Link to='/register'>Sign Up</Link>
+        Already an User? <Link to='/login'>Login</Link>
       </Message>
     </Grid.Column>
   </Grid>
@@ -96,4 +108,4 @@ class Login extends Component {
 export default connect(
   mapToProps,
   actions
-)(Login)
+)(Register)

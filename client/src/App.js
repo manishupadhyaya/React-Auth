@@ -1,31 +1,31 @@
 import React, { Component } from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
+import {Route, Switch } from 'react-router-dom';
 import withAuth from './withAuth';
+import withAuthUser from './withAuthUser'
+import Social from './Social'
+import Navbar from './NavBar'
 import Home from './Home';
 import Secret from './Secret';
 import Login from './Login';
 import Todo from './Todo';
 import Show from './Show';
+import Register from './Register'
+
 
 class App extends Component {
+
   render() {
     return (
       <div>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/secret">Secret</Link></li>
-          <li><Link to="/login">Login</Link></li>
-          <li><Link to="/todos">Todos</Link></li>
-          <li><Link to="/show">Show</Link></li>
-          
-        </ul>
-
+        <Navbar/>
         <Switch>
-          <Route path="/" exact component={Home} />
+          <Route path="/" exact component={withAuthUser(Social)} />
+          <Route path="/homepage" component={Home} />
           <Route path="/secret" component={withAuth(Secret)} />
           <Route path="/show" component={withAuth(Show)} />
-          <Route path="/todos" component={withAuth(Todo)} />
+          <Route path="/profile" component={withAuth(Todo)} />
           <Route path="/login" component={Login} />
+          <Route path='/register' component={Register} />
         </Switch>
       </div>
     );

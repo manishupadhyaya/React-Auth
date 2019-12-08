@@ -1,5 +1,5 @@
 const actions = store => ({
-    changeUser: state => ({ isAuthenticated: !state.isAuthenticated })
+    changeUser: state => ({ isAuthenticated: true })
   });
   
   export default actions;

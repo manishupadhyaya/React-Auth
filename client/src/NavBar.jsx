@@ -24,7 +24,6 @@ class DesktopContainer extends Component {
       {
           super(props);
           this.state = {
-              user: this.props.user
           }
       }
   
@@ -33,7 +32,7 @@ class DesktopContainer extends Component {
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
   
     render() {
-      const { fixed, activeItem, user } = this.state
+      const { fixed, activeItem, user } = this.props
       console.log("userDesktop",user)
       return (
         <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
@@ -99,7 +98,7 @@ class DesktopContainer extends Component {
       {
           super(props);
           this.state = {
-            isUser: this.props.isUser
+            user: this.props.user
           }
       }
   
@@ -171,10 +170,11 @@ class DesktopContainer extends Component {
         this.state = {
 
         }
-        console.log("NavBar state", this.props.isAuthenticated)
+        
     }
     render()
     {
+        console.log("NavBar state", this.props.isAuthenticated)
         return(
         <div>
             <DesktopContainer user={this.props.isAuthenticated}/>

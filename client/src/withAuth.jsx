@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import {connect} from 'redux-zero/react'
+import actions from './actions'
 
-export default function withAuth(ComponentToProtect) {
+const mapToProps = ({ isAuthenticated }) => ({ isAuthenticated });
+
+function withAuth(ComponentToProtect) {
   return class extends Component {
-    constructor() {
-      super();
+    constructor(props) {
+      super(props);
       this.state = {
         loading: true,
         redirect: false,
@@ -41,7 +45,9 @@ export default function withAuth(ComponentToProtect) {
       if (redirect) {
         return <Redirect to="/login" />;
       }
+      console.log(this.props)
       return (
+        
         <React.Fragment>
           <ComponentToProtect {...this.props} />
         </React.Fragment>
@@ -49,3 +55,5 @@ export default function withAuth(ComponentToProtect) {
     }
   }
 }
+
+export default withAuth

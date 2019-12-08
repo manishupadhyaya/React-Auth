@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import {connect} from 'redux-zero/react'
 import actions from './actions'
 
-const mapToProps = ({ isAuthenticated }) => ({ isAuthenticated });
+
 
 class Login extends Component {
   constructor(props) {
@@ -39,8 +39,6 @@ class Login extends Component {
       }
     })
     .then((res)=>{
-      this.props.changeUser()
-      console.log("Login state", this.props.isAuthenticated)
       localStorage.setItem('token', res.token);
       this.props.history.push('/')
     })
@@ -93,7 +91,4 @@ class Login extends Component {
   }
 }
 
-export default connect(
-  mapToProps,
-  actions
-)(Login)
+export default Login
